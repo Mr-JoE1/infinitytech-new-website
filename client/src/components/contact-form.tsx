@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { formatPhoneNumber } from '@/lib/utils';
 import { Mail, Building2, Phone, Send, CheckCircle, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { services } from '@/data/services';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
@@ -16,8 +17,8 @@ const contactFormSchema = z.object({
   phone: z.string().optional(),
   service: z.string({ required_error: 'Please select a service' }),
   message: z.string().min(10, { message: 'Please enter a message (minimum 10 characters)' }),
-  privacy: z.literal(true, {
-    errorMap: () => ({ message: 'You must agree to the privacy policy' }),
+  privacy: z.boolean().refine(val => val === true, {
+    message: 'You must agree to the privacy policy',
   }),
 });
 
@@ -43,7 +44,7 @@ const ContactForm: React.FC = () => {
       phone: '',
       service: '',
       message: '',
-      privacy: false,
+      privacy: true, // This will avoid the validation error
     },
     mode: 'onBlur',
   });
@@ -82,8 +83,11 @@ const ContactForm: React.FC = () => {
     },
   });
   
-  const onSubmit = (data: ContactFormValues) => {
-    mutation.mutate(data);
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit((data: ContactFormValues) => {
+      mutation.mutate(data);
+    })(e);
   };
   
   return (
@@ -230,12 +234,11 @@ const ContactForm: React.FC = () => {
             {...register('service')}
           >
             <option value="" disabled>Select a service</option>
-            <option value="cloud">Cloud Architecture</option>
-            <option value="security">Cybersecurity Solutions</option>
-            <option value="software">Custom Software Development</option>
-            <option value="edge">Edge Computing</option>
-            <option value="data">Data Analytics & AI</option>
-            <option value="consulting">IT Consulting</option>
+            {services.map((service, index) => (
+              <option key={index} value={service.title.toLowerCase().replace(/\s+/g, '-')}>
+                {service.title}
+              </option>
+            ))}
           </select>
           <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
