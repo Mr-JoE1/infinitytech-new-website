@@ -1,5 +1,6 @@
 import React from 'react';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { ArrowRight } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
@@ -8,13 +9,24 @@ const HeroSection: React.FC = () => {
     <section 
       id="hero" 
       ref={ref}
-      className={`hero-gradient pt-28 pb-20 md:pt-40 md:pb-32 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
+      className={`relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 pt-28 pb-20 md:pt-40 md:pb-32 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
     >
-      <div className="container mx-auto px-4">
+      {/* Accent circles */}
+      <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/10 filter blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-secondary/10 filter blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-accent/5 filter blur-3xl"></div>
+      
+      {/* Content */}
+      <div className="container relative z-10 mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 mb-10 md:mb-0">
+            <div className="inline-block px-4 py-1 bg-primary/10 backdrop-blur-sm rounded-full text-primary font-medium text-sm mb-6">
+              Edge to Cloud Technology Solutions
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Edge to Cloud <span className="text-accent">Inventors</span> & <span className="text-secondary">Consultants</span>
+              <span className="block">Transforming Ideas into</span>
+              <span className="text-accent">Digital </span>
+              <span className="text-secondary">Reality</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
               We develop, supply & integrate cutting-edge technology solutions that drive innovation and business growth.
@@ -22,9 +34,10 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a 
                 href="#contact" 
-                className="px-8 py-4 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition-colors duration-200 shadow-lg text-center text-lg"
+                className="group flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition-all duration-300 shadow-lg text-center text-lg"
               >
-                Get Started
+                Get Started 
+                <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <a 
                 href="#services" 
@@ -35,14 +48,21 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-            <img 
-              src="https://images.unsplash.com/photo-1545987796-200677ee1011?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
-              alt="Abstract representation of cloud technology" 
-              className="rounded-xl shadow-2xl max-w-full h-auto" 
-              loading="eager" 
-              width="600"
-              height="600"
-            />
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-accent/80 filter blur-sm"></div>
+              <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-secondary/50 filter blur-sm"></div>
+              
+              {/* Main image */}
+              <img 
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                alt="Digital transformation visualization" 
+                className="rounded-xl shadow-2xl max-w-full h-auto border-4 border-white/10" 
+                loading="eager" 
+                width="600"
+                height="600"
+              />
+            </div>
           </div>
         </div>
       </div>

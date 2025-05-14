@@ -7,6 +7,7 @@ interface LogoProps {
   secondaryTextColor?: string;
   size?: 'sm' | 'md' | 'lg';
   animated?: boolean;
+  className?: string;
 }
 
 const Logo: React.FC<LogoProps> = ({
@@ -15,11 +16,12 @@ const Logo: React.FC<LogoProps> = ({
   secondaryTextColor = 'text-secondary',
   size = 'md',
   animated = true,
+  className = '',
 }) => {
   const logoSizes = {
-    sm: 'h-8',
-    md: 'h-12',
-    lg: 'h-16',
+    sm: 'h-8 w-auto',
+    md: 'h-12 w-auto',
+    lg: 'h-16 w-auto',
   };
 
   const textSizes = {
@@ -35,7 +37,7 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className={`flex items-center space-x-3 ${className}`}>
       <div className={`${animated ? 'infinity-logo-animate' : ''} ${logoSizes[size]}`}>
         <InfinityLogo />
       </div>

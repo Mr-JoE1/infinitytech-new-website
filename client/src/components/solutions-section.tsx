@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { solutions } from '@/data/solutions';
 import { cn } from '@/lib/utils';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface SolutionTabItemProps {
   id: string;
@@ -9,6 +10,7 @@ interface SolutionTabItemProps {
   isActive: boolean;
   onClick: (id: string) => void;
   color: string;
+  icon: string;
 }
 
 const SolutionTabItem: React.FC<SolutionTabItemProps> = ({ 
@@ -16,19 +18,21 @@ const SolutionTabItem: React.FC<SolutionTabItemProps> = ({
   title, 
   isActive, 
   onClick,
-  color
+  color,
+  icon
 }) => {
   return (
     <button 
       className={cn(
-        "px-4 py-2 rounded-md font-medium transition-colors duration-200",
+        "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2",
         isActive 
-          ? `bg-${color} text-white` 
-          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          ? `bg-${color} text-white shadow-lg scale-105` 
+          : "bg-white text-gray-700 hover:bg-gray-100 shadow-md"
       )}
       onClick={() => onClick(id)}
     >
-      {title}
+      <i className={`fas ${icon} ${isActive ? 'text-white' : `text-${color}`}`}></i>
+      <span>{title}</span>
     </button>
   );
 };
@@ -43,38 +47,63 @@ interface SolutionContentProps {
     backgroundColor: string;
     color: string;
     buttonText: string;
+    icon: string;
   };
   isActive: boolean;
 }
 
 const SolutionContent: React.FC<SolutionContentProps> = ({ solution, isActive }) => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  
   return (
-    <div className={`${isActive ? 'block' : 'hidden'}`}>
-      <div className="flex flex-col md:flex-row items-center bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="w-full md:w-1/2">
+    <div 
+      ref={ref}
+      className={cn(
+        "transition-all duration-500",
+        isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute'
+      )}
+      style={{ display: isActive ? 'block' : 'none' }}
+    >
+      <div className="flex flex-col md:flex-row items-stretch bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
+        <div className="w-full md:w-1/2 relative overflow-hidden">
+          {/* Decorative shapes */}
+          <div className={`absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-${solution.color}/20 z-10`}></div>
+          <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-${solution.color}/10 z-10`}></div>
+          
           <img 
             src={solution.image} 
             alt={solution.title} 
-            className="w-full h-auto" 
+            className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700 relative z-0" 
+            style={{ minHeight: '400px' }}
             loading="lazy"
           />
+          
+          {/* Overlay with icon */}
+          <div className={`absolute bottom-6 left-6 w-16 h-16 rounded-full bg-${solution.color} flex items-center justify-center text-white shadow-lg z-20`}>
+            <i className={`fas ${solution.icon} text-2xl`}></i>
+          </div>
         </div>
-        <div className="w-full md:w-1/2 p-8 md:p-12">
-          <h3 className={`text-2xl font-bold mb-4 text-${solution.color}`}>{solution.title}</h3>
+        
+        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+          <div className={`inline-block px-4 py-1 rounded-full bg-${solution.color}/10 text-${solution.color} font-medium text-sm mb-4 self-start`}>
+            Enterprise Solution
+          </div>
+          <h3 className={`text-3xl font-bold mb-4 text-${solution.color}`}>{solution.title}</h3>
           <p className="text-gray-600 mb-6">{solution.description}</p>
-          <ul className="space-y-3 mb-8">
+          <ul className="space-y-4 mb-8">
             {solution.features.map((feature, index) => (
               <li key={index} className="flex items-start">
-                <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                <span>{feature}</span>
+                <CheckCircle2 className={`text-${solution.color} flex-shrink-0 mr-3 h-5 w-5 mt-0.5`} />
+                <span className="text-gray-700">{feature}</span>
               </li>
             ))}
           </ul>
           <a 
             href="#contact" 
-            className={`px-6 py-3 bg-${solution.color} text-white font-semibold rounded-md hover:bg-${solution.color}/90 transition-colors duration-200 inline-block`}
+            className={`group flex items-center self-start px-8 py-3 bg-${solution.color} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}
           >
             {solution.buttonText}
+            <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </div>
       </div>
@@ -90,6 +119,30 @@ const SolutionsSection: React.FC = () => {
     setActiveTab(tabId);
   };
   
+  // Add icons to the solutions data
+  useEffect(() => {
+    solutions.forEach(solution => {
+      if (!solution.icon) {
+        switch(solution.id) {
+          case 'cloud':
+            solution.icon = 'fa-cloud';
+            break;
+          case 'security':
+            solution.icon = 'fa-shield-alt';
+            break;
+          case 'integration':
+            solution.icon = 'fa-cogs';
+            break;
+          case 'data':
+            solution.icon = 'fa-database';
+            break;
+          default:
+            solution.icon = 'fa-lightbulb';
+        }
+      }
+    });
+  }, []);
+  
   return (
     <section 
       id="solutions" 
@@ -97,15 +150,20 @@ const SolutionsSection: React.FC = () => {
       className={`py-20 bg-gray-50 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Enterprise Solutions</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            End-to-end technology solutions crafted to transform your business operations and drive sustainable growth.
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-block px-4 py-1 bg-secondary/10 rounded-full text-secondary font-medium text-sm mb-4">
+            End-to-End Solutions
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Enterprise Solutions for <span className="text-secondary">Business Growth</span>
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Our technology solutions are crafted to transform your business operations and drive sustainable growth in an ever-evolving digital landscape.
           </p>
         </div>
         
         <div className="solution-tabs">
-          <div className="flex flex-wrap justify-center mb-8 space-x-2 md:space-x-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             {solutions.map((solution) => (
               <SolutionTabItem
                 key={solution.id}
@@ -114,17 +172,20 @@ const SolutionsSection: React.FC = () => {
                 isActive={activeTab === solution.id}
                 onClick={handleTabChange}
                 color={solution.color}
+                icon={solution.icon || 'fa-lightbulb'}
               />
             ))}
           </div>
           
-          {solutions.map((solution) => (
-            <SolutionContent
-              key={solution.id}
-              solution={solution}
-              isActive={activeTab === solution.id}
-            />
-          ))}
+          <div className="relative">
+            {solutions.map((solution) => (
+              <SolutionContent
+                key={solution.id}
+                solution={solution}
+                isActive={activeTab === solution.id}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
