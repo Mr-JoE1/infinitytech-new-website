@@ -21,29 +21,45 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 mb-10 md:mb-0">
             <div className="inline-block px-4 py-1 bg-primary/10 backdrop-blur-sm rounded-full text-primary font-medium text-sm mb-6">
-              Edge to Cloud Technology Solutions
+              Edge‑to‑Cloud Innovators | Full‑Stack Embedded & Consulting
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              <span className="block">Transforming Ideas into</span>
-              <span className="text-accent">Digital </span>
-              <span className="text-secondary">Reality</span>
+              <span className="block">Bridging</span>
+              <span className="text-primary">Physical</span>
+              <span> & </span>
+              <span className="text-secondary">Digital</span>
+              <span> Worlds</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
-              We develop, supply & integrate cutting-edge technology solutions that drive innovation and business growth.
+            <p className="text-lg md:text-xl text-gray-200 mb-6 max-w-xl">
+              A tight‑knit squad of engineers and hardware maestros crafting resilient solutions that power tomorrow's smart devices—today.
             </p>
+            <div className="space-y-2 mb-8 max-w-xl">
+              <p className="text-base md:text-lg text-gray-300 flex items-start">
+                <span className="text-primary text-xl mr-2">✓</span>
+                <span>Rapid prototyping in just 2 weeks</span>
+              </p>
+              <p className="text-base md:text-lg text-gray-300 flex items-start">
+                <span className="text-primary text-xl mr-2">✓</span>
+                <span>Top 3% Upwork Agency | 95% Job Success</span>
+              </p>
+              <p className="text-base md:text-lg text-gray-300 flex items-start">
+                <span className="text-primary text-xl mr-2">✓</span>
+                <span>End-to-End Security from bootloader to cloud</span>
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a 
                 href="#contact" 
                 className="group flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition-all duration-300 shadow-lg text-center text-lg"
               >
-                Get Started 
+                Free Technical Consultation
                 <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <a 
                 href="#services" 
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 font-semibold rounded-md hover:bg-white/20 transition-colors duration-200 text-center text-lg"
               >
-                Explore Solutions
+                View Engineering Services
               </a>
             </div>
           </div>
@@ -53,10 +69,10 @@ const HeroSection: React.FC = () => {
               <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-accent/80 filter blur-sm"></div>
               <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-secondary/50 filter blur-sm"></div>
               
-              {/* Main image */}
+              {/* Main image - circuit board or embedded system */}
               <img 
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
-                alt="Digital transformation visualization" 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                alt="Edge-to-Cloud technology innovation" 
                 className="rounded-xl shadow-2xl max-w-full h-auto border-4 border-white/10" 
                 loading="eager" 
                 width="600"
