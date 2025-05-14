@@ -83,11 +83,9 @@ const ContactForm: React.FC = () => {
     },
   });
   
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleSubmit((data: ContactFormValues) => {
-      mutation.mutate(data);
-    })(e);
+  // Use the mutation directly with the form handler
+  const submitForm = (data: ContactFormValues) => {
+    mutation.mutate(data);
   };
   
   return (
@@ -118,7 +116,7 @@ const ContactForm: React.FC = () => {
       <form 
         id="contact-form" 
         className={`relative z-0 ${submissionState === 'success' ? 'opacity-0' : 'opacity-100'}`}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(submitForm)}
       >
         <h3 className="text-2xl font-bold text-gray-800 mb-2">Get in Touch</h3>
         <p className="text-gray-600 mb-8">
