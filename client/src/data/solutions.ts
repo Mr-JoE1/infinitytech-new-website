@@ -14,6 +14,7 @@ export const solutions = [
     backgroundColor: 'bg-primary/10',
     color: 'primary',
     buttonText: 'Request Consultation',
+    icon: 'fa-cloud',
   },
   {
     id: 'security',
@@ -30,6 +31,7 @@ export const solutions = [
     backgroundColor: 'bg-secondary/10',
     color: 'secondary',
     buttonText: 'Request Consultation',
+    icon: 'fa-shield-alt',
   },
   {
     id: 'integration',
@@ -46,6 +48,7 @@ export const solutions = [
     backgroundColor: 'bg-accent/10',
     color: 'accent',
     buttonText: 'Request Consultation',
+    icon: 'fa-cogs',
   },
   {
     id: 'data',
@@ -62,5 +65,6 @@ export const solutions = [
     backgroundColor: 'bg-primary/10',
     color: 'primary',
     buttonText: 'Request Consultation',
+    icon: 'fa-database',
   },
 ];

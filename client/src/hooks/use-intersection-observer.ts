@@ -5,17 +5,17 @@ interface UseIntersectionObserverProps {
   rootMargin?: string;
 }
 
-interface UseIntersectionObserverReturn {
-  ref: RefObject<HTMLElement>;
+interface UseIntersectionObserverReturn<T extends HTMLElement = HTMLDivElement> {
+  ref: RefObject<T>;
   isVisible: boolean;
 }
 
-export const useIntersectionObserver = ({
+export const useIntersectionObserver = <T extends HTMLElement = HTMLDivElement>({
   threshold = 0.1,
   rootMargin = '0px',
-}: UseIntersectionObserverProps = {}): UseIntersectionObserverReturn => {
+}: UseIntersectionObserverProps = {}): UseIntersectionObserverReturn<T> => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<T>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {

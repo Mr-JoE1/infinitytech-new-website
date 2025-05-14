@@ -16,6 +16,7 @@ export interface Solution {
   backgroundColor: string;
   color: string;
   buttonText: string;
+  icon: string;
 }
 
 export interface CaseStudy {
