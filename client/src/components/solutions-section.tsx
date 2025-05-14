@@ -85,22 +85,31 @@ const SolutionContent: React.FC<SolutionContentProps> = ({ solution, isActive })
         </div>
         
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-          <div className={`inline-block px-4 py-1 rounded-full bg-${solution.color}/10 text-${solution.color} font-medium text-sm mb-4 self-start`}>
-            Enterprise Solution
+          <div className={`inline-flex items-center px-4 py-1 rounded-full bg-${solution.color}/10 text-${solution.color} font-medium text-sm mb-4 self-start`}>
+            <i className={`fas ${solution.icon} mr-2`}></i>
+            <span>Edge-to-Cloud Innovation</span>
           </div>
           <h3 className={`text-3xl font-bold mb-4 text-${solution.color}`}>{solution.title}</h3>
           <p className="text-gray-600 mb-6">{solution.description}</p>
-          <ul className="space-y-4 mb-8">
-            {solution.features.map((feature, index) => (
-              <li key={index} className="flex items-start">
-                <CheckCircle2 className={`text-${solution.color} flex-shrink-0 mr-3 h-5 w-5 mt-0.5`} />
-                <span className="text-gray-700">{feature}</span>
-              </li>
-            ))}
-          </ul>
+          
+          <div className="mb-8 bg-gray-50 rounded-lg p-4 border border-gray-100">
+            <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
+              <i className={`fas fa-cogs text-${solution.color} mr-2`}></i>
+              Technical Capabilities
+            </h4>
+            <ul className="space-y-3">
+              {solution.features.map((feature, index) => (
+                <li key={index} className="flex items-start">
+                  <CheckCircle2 className={`text-${solution.color} flex-shrink-0 mr-3 h-5 w-5 mt-0.5`} />
+                  <span className="text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
           <a 
             href="#contact" 
-            className={`group flex items-center self-start px-8 py-3 bg-${solution.color} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}
+            className={`group flex items-center justify-center md:justify-start px-8 py-3 bg-${solution.color} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 w-full md:w-auto`}
           >
             {solution.buttonText}
             <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
@@ -152,13 +161,13 @@ const SolutionsSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-block px-4 py-1 bg-secondary/10 rounded-full text-secondary font-medium text-sm mb-4">
-            End-to-End Solutions
+            Edge-to-Cloud Innovators
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Enterprise Solutions for <span className="text-secondary">Business Growth</span>
+            Bridging <span className="text-primary">Physical</span> and <span className="text-secondary">Digital</span> Worlds
           </h2>
           <p className="text-gray-600 text-lg">
-            Our technology solutions are crafted to transform your business operations and drive sustainable growth in an ever-evolving digital landscape.
+            From custom embedded systems to fully orchestrated Cloud-Edge AI pipelines, we craft resilient solutions that power tomorrow's smart devices—today.
           </p>
         </div>
         
@@ -185,6 +194,64 @@ const SolutionsSection: React.FC = () => {
                 isActive={activeTab === solution.id}
               />
             ))}
+          </div>
+        </div>
+        
+        {/* Key achievements section */}
+        <div className="mt-20 bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div className="p-8 md:p-10">
+            <h3 className="text-2xl font-bold text-center mb-10">Why Choose Infinity Technologies</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: 'fa-bolt',
+                  title: 'Rapid Prototyping',
+                  description: 'From concept to proof-of-concept in just 2 weeks',
+                  color: 'text-amber-500',
+                  bg: 'bg-amber-50'
+                },
+                {
+                  icon: 'fa-trophy',
+                  title: 'Top 3% Upwork Agency',
+                  description: '95% Job Success | 4.6-star average',
+                  color: 'text-emerald-500',
+                  bg: 'bg-emerald-50'
+                },
+                {
+                  icon: 'fa-globe',
+                  title: '24/7 Global Reach',
+                  description: 'Teams across GCC, Europe & Americas',
+                  color: 'text-blue-500',
+                  bg: 'bg-blue-50'
+                },
+                {
+                  icon: 'fa-chart-line',
+                  title: 'Data-Driven Impact',
+                  description: 'Cut downtime by 40%+ and boost throughput',
+                  color: 'text-purple-500',
+                  bg: 'bg-purple-50'
+                }
+              ].map((achievement, idx) => (
+                <div key={idx} className="flex flex-col items-center text-center">
+                  <div className={`w-16 h-16 rounded-full ${achievement.bg} flex items-center justify-center mb-4`}>
+                    <i className={`fas ${achievement.icon} text-xl ${achievement.color}`}></i>
+                  </div>
+                  <h4 className="font-bold text-lg mb-2">{achievement.title}</h4>
+                  <p className="text-gray-600">{achievement.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 text-center">
+            <a 
+              href="#contact" 
+              className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl inline-flex items-center font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              Ready to Innovate? Let's Transform Your Vision
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
           </div>
         </div>
       </div>
