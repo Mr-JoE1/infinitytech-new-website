@@ -4,6 +4,7 @@ export interface Service {
   title: string;
   description: string;
   learnMoreColor: string;
+  features: string[];
 }
 
 export interface Solution {
