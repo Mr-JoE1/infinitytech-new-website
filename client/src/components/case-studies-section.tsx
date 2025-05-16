@@ -98,10 +98,29 @@ const CaseStudiesSection: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Case Studies</h2>
+          <div className="inline-block px-4 py-1 bg-primary/10 rounded-full text-primary font-medium text-sm mb-4">
+            Success Stories
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our <span className="text-primary">Global</span> Impact</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            See how our solutions have helped organizations across various industries achieve their technology goals.
+            Discover how our engineering expertise and embedded solutions have transformed businesses across GCC, Europe, and the Americas.
           </p>
+          
+          {/* Region filter */}
+          <div className="flex flex-wrap justify-center mt-8 gap-2">
+            {['All', 'UAE', 'KSA', 'EG', 'USA'].map((region) => (
+              <button 
+                key={region}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  region === 'All' 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                }`}
+              >
+                {region}
+              </button>
+            ))}
+          </div>
         </div>
         
         <div className="case-study-carousel relative">
@@ -126,10 +145,33 @@ const CaseStudiesSection: React.FC = () => {
                         </span>
                         <span className="ml-auto text-sm text-gray-500">ROI: {study.roi}</span>
                       </div>
+                      
+                      {/* Location badge */}
+                      {'location' in study && (
+                        <div className="mb-3">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                            <i className="fas fa-map-marker-alt mr-1"></i>
+                            {study.location}
+                          </span>
+                        </div>
+                      )}
+                      
                       <h3 className="text-xl font-bold mb-2">{study.title}</h3>
                       <p className="text-gray-600 mb-4">{study.description}</p>
-                      <a href="#" className="text-primary font-medium inline-flex items-center">
-                        Read case study <i className="fas fa-arrow-right ml-2"></i>
+                      
+                      {/* Skills badges */}
+                      {'skills' in study && study.skills && (
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {study.skills.map((skill, i) => (
+                            <span key={i} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      
+                      <a href="#contact" className="text-primary font-medium inline-flex items-center">
+                        Request similar solution <i className="fas fa-arrow-right ml-2"></i>
                       </a>
                     </div>
                   </div>
