@@ -40,29 +40,46 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6">Services</h4>
+            <h4 className="text-lg font-semibold mb-6">Our Expertise</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Cloud Architecture</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Cybersecurity Solutions</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Custom Software Development</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Edge Computing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Data Analytics & AI</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">Embedded Systems</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">Hardware & PCB Design</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">IoT & Connectivity</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">Cloud Architecture</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">AI/ML & Edge Intelligence</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200">Mobile & Dashboard Apps</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <i className="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">
-                  {contactInfo.address.line1}<br/>{contactInfo.address.line2}
-                </span>
+            <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
+            <ul className="space-y-6">
+              {/* UAE Office */}
+              <li>
+                <div className="flex items-start mb-1">
+                  <i className="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+                  <span className="text-white font-medium">UAE Branch Office</span>
+                </div>
+                <div className="ml-6 text-gray-400 mb-2">Abu Dhabi, UAE</div>
+                <div className="ml-6 flex items-center text-gray-400">
+                  <i className="fas fa-phone mr-2 text-gray-500"></i>
+                  <span>{contactInfo.offices[1].phone}</span>
+                </div>
               </li>
-              <li className="flex items-start">
-                <i className="fas fa-phone mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">{contactInfo.phone}</span>
+              
+              {/* Egypt Office */}
+              <li>
+                <div className="flex items-start mb-1">
+                  <i className="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
+                  <span className="text-white font-medium">Egypt Head Office</span>
+                </div>
+                <div className="ml-6 text-gray-400 mb-2">Cairo, Egypt</div>
+                <div className="ml-6 flex items-center text-gray-400">
+                  <i className="fas fa-phone mr-2 text-gray-500"></i>
+                  <span>{contactInfo.offices[0].phone}</span>
+                </div>
               </li>
+              
               <li className="flex items-start">
                 <i className="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
                 <span className="text-gray-400">{contactInfo.email}</span>

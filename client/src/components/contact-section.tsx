@@ -21,23 +21,33 @@ const ContactSection: React.FC = () => {
             </p>
             
             <div className="space-y-6 mb-10">
-              <div className="flex items-start">
+              {/* UAE Office */}
+              <div className="flex items-start bg-white shadow-md p-4 rounded-lg border-l-4 border-secondary">
+                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <i className="fas fa-map-marker-alt text-secondary"></i>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg mb-1">UAE Branch Office</h4>
+                  <p className="text-gray-600 mb-2">Abu Dhabi, UAE</p>
+                  <div className="flex items-center text-gray-600">
+                    <i className="fas fa-phone mr-2"></i>
+                    <span>{contactInfo.offices[1].phone}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Egypt Office */}
+              <div className="flex items-start bg-white shadow-md p-4 rounded-lg border-l-4 border-primary">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
                   <i className="fas fa-map-marker-alt text-primary"></i>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg mb-1">Visit Us</h4>
-                  <p className="text-gray-600">{contactInfo.address.line1}<br/>{contactInfo.address.line2}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                  <i className="fas fa-phone text-primary"></i>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg mb-1">Call Us</h4>
-                  <p className="text-gray-600">{contactInfo.phone}</p>
+                  <h4 className="font-semibold text-lg mb-1">Egypt Head Office</h4>
+                  <p className="text-gray-600 mb-2">Cairo, Egypt</p>
+                  <div className="flex items-center text-gray-600">
+                    <i className="fas fa-phone mr-2"></i>
+                    <span>{contactInfo.offices[0].phone}</span>
+                  </div>
                 </div>
               </div>
               
