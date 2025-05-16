@@ -1,30 +1,50 @@
 export const contactInfo = {
+  offices: [
+    {
+      name: 'Egypt Head Office',
+      address: {
+        line1: 'Headquarters',
+        line2: 'Cairo, Egypt',
+      },
+      phone: '+20 106 044 9214',
+      whatsapp: '+201060449214',
+    },
+    {
+      name: 'UAE Branch Office',
+      address: {
+        line1: 'Branch Office',
+        line2: 'Abu Dhabi, UAE',
+      },
+      phone: '+971 50 369 3357',
+      whatsapp: '+971503693357',
+    }
+  ],
   address: {
-    line1: '123 Tech Boulevard, Innovation District',
-    line2: 'San Francisco, CA 94105',
+    line1: 'Abu Dhabi Branch Office',
+    line2: 'Abu Dhabi, UAE',
   },
-  phone: '+1 (555) 123-4567',
-  email: 'info@infinitytechnologies.com',
+  phone: '+971 50 369 3357',
+  email: 'info@infinitytech.ae',
   socialLinks: [
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/infinity-technologies',
+      url: 'https://www.linkedin.com/company/infinitytech100',
       icon: 'fa-linkedin-in',
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/infinitytech',
+      url: 'https://x.com/infinitytech100',
       icon: 'fa-twitter',
     },
     {
       name: 'Facebook',
-      url: 'https://www.facebook.com/infinitytechnologies',
+      url: 'https://www.facebook.com/infinitytech100/',
       icon: 'fa-facebook-f',
     },
     {
-      name: 'GitHub',
-      url: 'https://github.com/infinity-technologies',
-      icon: 'fa-github',
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@infinitytech100',
+      icon: 'fa-youtube',
     },
   ],
 };
