@@ -58,9 +58,9 @@ const Footer: React.FC = () => {
               <li>
                 <div className="flex items-start mb-1">
                   <i className="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
-                  <span className="text-white font-medium">UAE Branch Office</span>
+                  <span className="text-gray-500 font-bold">UAE Branch Office</span>
                 </div>
-                <div className="ml-6 text-gray-400 mb-2">Abu Dhabi, UAE</div>
+                <div className="ml-6 text-gray-400 mb-2">12 AlMushrif St, Abu Dhabi, UAE</div>
                 <div className="ml-6 flex items-center text-gray-400">
                   <i className="fas fa-phone mr-2 text-gray-500"></i>
                   <span>{contactInfo.offices[1].phone}</span>
@@ -71,9 +71,10 @@ const Footer: React.FC = () => {
               <li>
                 <div className="flex items-start mb-1">
                   <i className="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
-                  <span className="text-white font-medium">Egypt Head Office</span>
-                </div>
-                <div className="ml-6 text-gray-400 mb-2">Cairo, Egypt</div>
+                  
+                  <span className="text-gray-500 font-bold">Egypt Head Office</span>
+                  </div>
+                <div className="ml-6 text-gray-400 mb-2">37 Sekket Elswis St, El-Wailly, Cairo , EG , Egypt</div>
                 <div className="ml-6 flex items-center text-gray-400">
                   <i className="fas fa-phone mr-2 text-gray-500"></i>
                   <span>{contactInfo.offices[0].phone}</span>
@@ -82,7 +83,7 @@ const Footer: React.FC = () => {
               
               <li className="flex items-start">
                 <i className="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">{contactInfo.email}</span>
+                <a href={`mailto:${contactInfo.email}`} className="text-gray-400 hover:text-gray-600 transition-colors duration-200">{contactInfo.email}</a>
               </li>
             </ul>
           </div>
