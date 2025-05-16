@@ -111,21 +111,7 @@ const HappyClientsSection: React.FC = () => {
         </div>
       </div>
       
-      {/* Add client scroll animation */}
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-      `}</style>
+      {/* Client scroll animation is added via CSS in index.css */}
     </section>
   );
 };
