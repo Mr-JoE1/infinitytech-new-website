@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <Logo showText={true} textColor="text-white" secondaryTextColor="text-secondary" size="sm" animated={false} />
+              <Logo showText={true} textColor="text-gray-800" secondaryTextColor="text-secondary" size="sm" animated={false} />
             </div>
             <p className="text-gray-400 mb-6">
               Providing innovative technology solutions that empower businesses to thrive in the digital age.
@@ -93,9 +93,9 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Infinity Technologies Ltd. All rights reserved.</p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Sitemap</a>
+              <a href="https://www.termsfeed.com/live/0c8c7f6d-9437-43f2-856f-9744c160b0d6" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+              <a href="https://www.termsfeed.com/live/8d6cb981-5015-4d24-8461-f14e59e6eb87" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+              <a href="" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Sitemap</a>
             </div>
           </div>
         </div>
