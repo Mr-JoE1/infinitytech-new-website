@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
               
               {/* Main image - circuit board or embedded system */}
               <img 
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                src={new URL("../assets/others/hero-img.jpg", import.meta.url).href} 
                 alt="Edge-to-Cloud technology innovation" 
                 className="rounded-xl shadow-2xl max-w-full h-auto border-4 border-white/10" 
                 loading="eager" 

@@ -11,7 +11,7 @@ export const solutions = [
       'Full hardware lifecycle management from concept to production',
       'Rapid 2-week prototyping for proof-of-concepts'
     ],
-    image: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    image: new URL("../assets/others/embedded.jpeg", import.meta.url).href,
     backgroundColor: 'bg-primary/10',
     color: 'primary',
     buttonText: 'Discuss Your Project',
@@ -29,7 +29,7 @@ export const solutions = [
       'Secure device-to-cloud communication',
       'Custom dashboards and control interfaces'
     ],
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    image: new URL("../assets/others/iot.webp", import.meta.url).href,
     backgroundColor: 'bg-secondary/10',
     color: 'secondary',
     buttonText: 'Explore IoT Solutions',
@@ -47,7 +47,7 @@ export const solutions = [
       'Custom control interfaces for IoT devices',
       'Push notifications and alerts integration'
     ],
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    image: new URL("../assets/others/mob.png", import.meta.url).href,
     backgroundColor: 'bg-accent/10',
     color: 'accent',
     buttonText: 'Request Demo',
@@ -65,28 +65,11 @@ export const solutions = [
       'Computer vision and object detection',
       'Predictive maintenance and anomaly detection'
     ],
-    image: 'https://images.unsplash.com/photo-1677442135136-760c813028c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    image: new URL("../assets/others/ai.jpg", import.meta.url).href,
     backgroundColor: 'bg-primary/10',
     color: 'primary',
     buttonText: 'Explore AI Solutions',
     icon: 'fa-brain',
   },
-  {
-    id: 'transport',
-    tabTitle: 'Transportation',
-    title: 'Intelligent Transportation Systems',
-    description: 'Enhance road safety and traffic management with our intelligent transportation solutions. From speed measurement radars to ANPR cameras and comprehensive enforcement platforms, we deliver end-to-end ITS implementations.',
-    features: [
-      'Speed radar integration and calibration',
-      'Automatic Number Plate Recognition (ANPR) systems',
-      'Traffic monitoring and analysis platforms',
-      'Red light and traffic enforcement solutions',
-      'Real-time violation detection and reporting'
-    ],
-    image: 'https://images.unsplash.com/photo-1579118243684-9b511b39a270?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    backgroundColor: 'bg-secondary/10',
-    color: 'secondary',
-    buttonText: 'Learn More',
-    icon: 'fa-traffic-light',
-  },
+  
 ];
