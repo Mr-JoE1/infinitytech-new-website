@@ -53,8 +53,18 @@ const CarouselControls: React.FC<CarouselControlsProps> = ({ onPrev, onNext, isM
 const CaseStudiesSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(3);
+  const [selectedRegion, setSelectedRegion] = useState('All');
   const slidesContainerRef = useRef<HTMLDivElement>(null);
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  
+  const filteredStudies = selectedRegion === 'All' 
+    ? caseStudies 
+    : caseStudies.filter(study => 'location' in study && study.location === selectedRegion);
+  
+  const handleRegionChange = (region: string) => {
+    setSelectedRegion(region);
+    setCurrentSlide(0);
+  };
   
   useEffect(() => {
     const updateSlidesPerView = () => {
@@ -73,7 +83,7 @@ const CaseStudiesSection: React.FC = () => {
     return () => window.removeEventListener('resize', updateSlidesPerView);
   }, []);
   
-  const maxSlide = Math.max(0, caseStudies.length - slidesPerView);
+  const maxSlide = Math.max(0, filteredStudies.length - slidesPerView);
   
   const handlePrev = () => {
     setCurrentSlide((prev) => Math.max(0, prev - 1));
@@ -111,8 +121,9 @@ const CaseStudiesSection: React.FC = () => {
             {['All', 'UAE', 'KSA', 'EG', 'USA'].map((region) => (
               <button 
                 key={region}
+                onClick={() => handleRegionChange(region)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  region === 'All' 
+                  region === selectedRegion 
                     ? 'bg-primary text-white' 
                     : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                 }`}
@@ -129,7 +140,7 @@ const CaseStudiesSection: React.FC = () => {
               ref={slidesContainerRef}
               className="case-study-slides flex transition-transform duration-500 ease-in-out"
             >
-              {caseStudies.map((study, index) => (
+              {filteredStudies.map((study, index) => (
                 <div key={index} className="case-study-slide w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
                   <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full">
                     <img 

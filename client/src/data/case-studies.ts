@@ -48,7 +48,7 @@ export const caseStudies = [
     category: 'IoT & Sensors',
     categoryBg: 'bg-orange-100',
     categoryText: 'text-orange-800',
-    location: 'USA',
+    location: 'UAE',
     roi: '30%',
     description: 'Developed an advanced IoT solution for HVAC systems featuring smart thermostats and air quality sensors with secure cloud connectivity, achieving 27% energy savings and a 40% improvement in indoor air quality for commercial buildings.',
     image: new URL("../assets/cases/thermo.jpg", import.meta.url).href,

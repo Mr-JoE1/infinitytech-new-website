@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 import { formatPhoneNumber } from '@/lib/utils';
 import { Mail, Building2, Phone, Send, CheckCircle, Loader2 } from 'lucide-react';
@@ -59,25 +58,76 @@ const ContactForm: React.FC = () => {
   }, [phone, setValue, touchedFields.phone]);
   
   const mutation = useMutation({
-    mutationFn: (data: ContactFormValues) => {
+    mutationFn: (submissionData: ContactFormValues) => {
       setSubmissionState('loading');
-      return apiRequest('POST', '/api/contact', data);
+
+      const formDataForApi = new FormData();
+      formDataForApi.append("access_key", "32f47783-a845-4000-b555-695140cdacc0");
+
+      // Append all form fields from ContactFormValues, excluding 'privacy'
+      for (const key in submissionData) {
+        if (Object.prototype.hasOwnProperty.call(submissionData, key)) {
+          if (key === 'privacy') continue; // Don't send client-side privacy field
+
+          const value = submissionData[key as keyof ContactFormValues];
+          if (value !== undefined && value !== null && value !== '') { // Only append if value exists and is not empty
+            formDataForApi.append(key, String(value));
+          }
+        }
+      }
+      
+      // Add honeypot field as recommended by Web3Forms
+      formDataForApi.append("botcheck", ""); 
+
+      return fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataForApi,
+      }).then(async response => {
+        // Web3Forms typically returns JSON, even on redirect if "Accept: application/json" is hinted or it's an AJAX call
+        // However, if it strictly follows HTML form submission and redirects, response.ok might be true.
+        // Let's try to parse JSON first.
+        const responseData = await response.json().catch(() => null); // Catch if not JSON
+
+        if (response.ok) {
+          // If responseData is null but response.ok is true (e.g. after a redirect not returning JSON)
+          // or if responseData indicates success (Web3Forms often returns { success: true, message: "..." })
+          if (responseData && responseData.success) {
+            return responseData;
+          }
+          if (!responseData && response.redirected) { // Successfully submitted and redirected by Web3Forms
+             return { success: true, message: "Form submitted successfully." };
+          }
+          if (response.status === 200 && !responseData) { // OK status but no JSON (might be simple success page)
+            return { success: true, message: "Form submitted successfully." };
+          }
+          // If responseData exists but doesn't have a success flag, check its message
+          if (responseData && responseData.message) {
+            throw new Error(responseData.message);
+          }
+          // Fallback success if response.ok but no clear JSON success structure
+          return { success: true, message: "Form submitted, awaiting confirmation from service." };
+        } else {
+          // Handle HTTP errors
+          const errorMessage = responseData?.message || `Submission failed with status: ${response.status}`;
+          throw new Error(errorMessage);
+        }
+      });
     },
-    onSuccess: () => {
+    onSuccess: (data) => { // data here is what's returned from mutationFn
       setSubmissionState('success');
       toast({
-        title: 'Message sent successfully!',
+        title: data?.message || 'Message sent successfully!', // Use message from Web3Forms if available
         description: 'Thank you for contacting us. Our team will get back to you shortly.',
         variant: 'default',
       });
       reset();
       setTimeout(() => setSubmissionState('idle'), 3000);
     },
-    onError: (error) => {
+    onError: (error: Error) => { // Explicitly type error as Error
       setSubmissionState('error');
       toast({
         title: 'Error sending message',
-        description: error instanceof Error ? error.message : 'Please try again later',
+        description: error.message || 'An unknown error occurred. Please try again later.',
         variant: 'destructive',
       });
     },
