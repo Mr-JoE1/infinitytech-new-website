@@ -77,30 +77,5 @@ export const services = [
       'Real-time inferencing at the edge'
     ]
   },
-  {
-    icon: 'fa-traffic-light',
-    iconBgClass: 'bg-primary/10',
-    title: 'Intelligent Transportation Systems',
-    description: 'Advanced ITS solutions including speed radar integration, ANPR camera systems, and comprehensive traffic enforcement platforms.',
-    learnMoreColor: 'text-primary',
-    features: [
-      'Speed radar integration and calibration',
-      'ANPR camera systems and image processing',
-      'Traffic monitoring and analysis',
-      'Enforcement system integration'
-    ]
-  },
-  {
-    icon: 'fa-shield-alt',
-    iconBgClass: 'bg-secondary/10',
-    title: 'End-to-End Security',
-    description: 'Comprehensive security from secure bootloaders and firmware authentication to hardened cloud-edge communication and data protection.',
-    learnMoreColor: 'text-secondary',
-    features: [
-      'Secure bootloaders and firmware authentication',
-      'Encrypted communication channels',
-      'Certificate-based authentication',
-      'Hardware security module integration'
-    ]
-  },
+
 ];
