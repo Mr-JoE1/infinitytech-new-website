@@ -38,7 +38,7 @@ const HappyClientsSection: React.FC = () => {
                   <img 
                     src={client.logo} 
                     alt={`${client.name} logo`}
-                    className="max-h-12 max-w-full mb-3 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    className="max-h-12 max-w-full mb-3 object-contain transition-all duration-300"
                   />
                   <p className="text-sm font-medium text-gray-800">{client.name}</p>
                 </div>
