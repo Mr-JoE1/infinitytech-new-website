@@ -15,7 +15,7 @@ const AboutSection: React.FC = () => {
           <div className="w-full md:w-1/2 mb-10 md:mb-0 md:pr-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About Infinity Technologies</h2>
             <p className="text-gray-700 mb-6">
-              Infinity Technologies is a leading provider of innovative technology solutions that enable businesses to thrive in the digital age. With over 15 years of experience, we have established ourselves as trusted advisors to organizations across various industries.
+              Infinity Technologies is a leading provider of innovative technology solutions that enable businesses to thrive in the digital age. With over 10 years of experience, we have established ourselves as trusted advisors to organizations across various industries.
             </p>
             <p className="text-gray-700 mb-6">
               Our team of experts combines deep technical knowledge with business acumen to deliver solutions that address complex challenges and drive measurable results. We pride ourselves on our collaborative approach, working closely with clients to understand their unique needs and develop tailored strategies.

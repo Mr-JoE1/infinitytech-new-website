@@ -3,7 +3,7 @@ export const services = [
     icon: 'fa-microchip',
     iconBgClass: 'bg-primary/10',
     title: 'Custom Embedded Systems',
-    description: 'Low-latency firmware development, RTOS implementation, C/C++ optimization and seamless hardware integration for mission-critical applications.',
+    description: 'Low-latency firmware development, RTOS implementation, Rust and C/C++ optimization and seamless hardware integration for mission-critical applications.',
     learnMoreColor: 'text-primary',
     features: [
       'Bare-metal and RTOS-based firmware',

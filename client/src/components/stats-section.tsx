@@ -59,8 +59,8 @@ const StatsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <StatCard value={98} suffix="%" label="Client Satisfaction" animationDelay={0} />
           <StatCard value={250} suffix="+" label="Projects Completed" animationDelay={200} />
-          <StatCard value={15} suffix="+" label="Years Experience" animationDelay={400} />
-          <StatCard value={50} suffix="+" label="Technology Partners" animationDelay={600} />
+          <StatCard value={10} suffix="+" label="Years Experience" animationDelay={400} />
+          <StatCard value={30} suffix="+" label="Technology Partners" animationDelay={600} />
         </div>
       </div>
     </section>
