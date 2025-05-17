@@ -1,7 +1,8 @@
 import React from 'react';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { testimonials } from '@/data/testimonials';
 import { Star, StarHalf } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 
 interface TestimonialCardProps {
   testimonial: {
@@ -10,53 +11,55 @@ interface TestimonialCardProps {
     author: {
       name: string;
       title: string;
-      initials: string;
+      personImage: string;
+      companyLogo: string;
     };
   };
-  index: number;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index }) => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
-  
-  // Generate stars array
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   const stars = [];
   const fullStars = Math.floor(testimonial.stars);
   const hasHalfStar = testimonial.stars % 1 !== 0;
   
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<Star key={i} className="fill-amber-400 text-amber-400" />);
+    stars.push(<Star key={`full-${i}`} className="fill-amber-400 text-amber-400 w-5 h-5" />);
   }
   
   if (hasHalfStar) {
-    stars.push(<StarHalf key="half" className="fill-amber-400 text-amber-400" />);
+    stars.push(<StarHalf key="half" className="fill-amber-400 text-amber-400 w-5 h-5" />);
   }
-  
+  const remainingStars = 5 - Math.ceil(testimonial.stars);
+  for (let i = 0; i < remainingStars; i++) {
+    stars.push(<Star key={`empty-${i}`} className="text-gray-300 w-5 h-5" />);
+  }
+
   return (
-    <div 
-      ref={ref} 
-      className={`bg-white p-8 rounded-xl shadow-md transition-all duration-500 transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
-    >
-      <div className="flex items-center mb-6">
-        <div className="text-amber-400 flex">
-          {stars}
-        </div>
-      </div>
-      <blockquote className="mb-6">
-        <p className="text-gray-700 italic">{testimonial.text}</p>
-      </blockquote>
-      <div className="flex items-center">
-        <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4 flex-shrink-0">
-          <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-            <span className="text-gray-600 font-bold">{testimonial.author.initials}</span>
-          </div>
-        </div>
+    <div className="embla__slide">
+      <div 
+        className="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col justify-between mx-2"
+      >
         <div>
-          <h4 className="font-semibold">{testimonial.author.name}</h4>
-          <p className="text-sm text-gray-600">{testimonial.author.title}</p>
+          <div className="flex items-center mb-4">
+            {stars}
+          </div>
+          <blockquote className="mb-5">
+            <p className="text-gray-600 text-sm leading-relaxed h-28 overflow-hidden">
+              {testimonial.text}
+            </p>
+          </blockquote>
+        </div>
+        <div className="flex items-center mt-auto">
+          <div className="w-10 h-10 rounded-full overflow-hidden mr-3 flex-shrink-0">
+            <img src={testimonial.author.personImage} alt={testimonial.author.name} className="w-full h-full object-cover" />
+          </div>
+          <div className="flex-grow">
+            <h4 className="font-semibold text-sm text-gray-800">{testimonial.author.name}</h4>
+            <p className="text-xs text-gray-500">{testimonial.author.title}</p>
+          </div>
+          <div className="ml-3 flex-shrink-0">
+            <img src={testimonial.author.companyLogo} alt={`${testimonial.author.name}\'s company logo`} className="h-6 object-contain" />
+          </div>
         </div>
       </div>
     </div>
@@ -64,30 +67,41 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index })
 };
 
 const TestimonialsSection: React.FC = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: sectionRef, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: false,
+      align: 'start',
+      containScroll: 'trimSnaps'
+    }
+  );
   
   return (
     <section 
       id="testimonials" 
-      ref={ref}
-      className={`py-20 bg-gray-50 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
+      ref={sectionRef}
+      className={`py-16 bg-slate-50 ${isVisible ? 'fade-in-up' : 'opacity-0'}`}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Hear what our clients have to say about their experience working with Infinity Technologies.
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+            Trusted by Innovators
+          </h2>
+          <p className="text-gray-600 max-w-xl mx-auto">
+            Hear what our clients have to say about their experience.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard 
-              key={index} 
-              testimonial={testimonial} 
-              index={index} 
-            />
-          ))}
+        <div className="embla" ref={emblaRef}>
+          <div className="embla__container flex animate-scroll-testimonials">
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <TestimonialCard 
+                key={index} 
+                testimonial={testimonial}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

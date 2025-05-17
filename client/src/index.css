@@ -149,3 +149,49 @@
     }
   }
 }
+
+/* Embla Carousel Styles */
+.embla {
+  overflow: hidden; /* Essential: hides the non-visible slides */
+}
+
+.embla__container {
+  display: flex; /* Essential: lays out slides horizontally */
+}
+
+/* Default to 1 slide per view on small screens */
+.embla__slide {
+  position: relative; /* Needed for child elements if any are absolute */
+  flex: 0 0 100%; 
+  min-width: 0; /* Recommended for flexbox item proper sizing */
+}
+
+/* 2 slides per view on medium screens (md breakpoint in Tailwind: 768px) */
+@media (min-width: 768px) {
+  .embla__slide {
+    flex: 0 0 50%;
+  }
+}
+
+/* 3 slides per view on large screens (lg breakpoint in Tailwind: 1024px) */
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 32%; /* Adjusted from 33.3333% to make the next slide peek */
+  }
+}
+
+/* Animation for testimonials carousel */
+@keyframes scrollTestimonials {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Scrolls one full set of duplicated testimonials */
+  }
+}
+
+.animate-scroll-testimonials {
+  /* Adjust duration based on the number of testimonials and desired speed */
+  /* Example: 60s. If you have 4 testimonials, it scrolls 4 cards in 60s. */
+  animation: scrollTestimonials 60s linear infinite;
+}

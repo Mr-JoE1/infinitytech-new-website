@@ -27,8 +27,8 @@ const ContactSection: React.FC = () => {
                   <i className="fas fa-map-marker-alt text-secondary"></i>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg mb-1">UAE Branch Office</h4>
-                  <p className="text-gray-600 mb-2">Abu Dhabi, UAE</p>
+                  <h4 className="font-semibold text-lg mb-1">{contactInfo.offices[1].name}</h4>
+                  <p className="text-gray-600 mb-2">{contactInfo.offices[1].address.line2}</p>
                   <div className="flex items-center text-gray-600">
                     <i className="fas fa-phone mr-2"></i>
                     <span>{contactInfo.offices[1].phone}</span>
@@ -42,8 +42,8 @@ const ContactSection: React.FC = () => {
                   <i className="fas fa-map-marker-alt text-primary"></i>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-lg mb-1">Egypt Head Office</h4>
-                  <p className="text-gray-600 mb-2">Cairo, Egypt</p>
+                  <h4 className="font-semibold text-lg mb-1">{contactInfo.offices[0].name}</h4>
+                  <p className="text-gray-600 mb-2">{contactInfo.offices[0].address.line2}</p>
                   <div className="flex items-center text-gray-600">
                     <i className="fas fa-phone mr-2"></i>
                     <span>{contactInfo.offices[0].phone}</span>

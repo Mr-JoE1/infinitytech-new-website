@@ -58,9 +58,9 @@ const Footer: React.FC = () => {
               <li>
                 <div className="flex items-start mb-1">
                   <i className="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
-                  <span className="text-gray-500 font-bold">UAE Branch Office</span>
+                  <span className="text-gray-500 font-bold">{contactInfo.offices[1].name}</span>
                 </div>
-                <div className="ml-6 text-gray-400 mb-2">12 AlMushrif St, Abu Dhabi, UAE</div>
+                <div className="ml-6 text-gray-400 mb-2">{contactInfo.offices[1].address.line2}</div>
                 <div className="ml-6 flex items-center text-gray-400">
                   <i className="fas fa-phone mr-2 text-gray-500"></i>
                   <span>{contactInfo.offices[1].phone}</span>
@@ -72,9 +72,9 @@ const Footer: React.FC = () => {
                 <div className="flex items-start mb-1">
                   <i className="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
                   
-                  <span className="text-gray-500 font-bold">Egypt Head Office</span>
+                  <span className="text-gray-500 font-bold">{contactInfo.offices[0].name}</span>
                   </div>
-                <div className="ml-6 text-gray-400 mb-2">37 Sekket Elswis St, El-Wailly, Cairo , EG , Egypt</div>
+                <div className="ml-6 text-gray-400 mb-2">{contactInfo.offices[0].address.line2}</div>
                 <div className="ml-6 flex items-center text-gray-400">
                   <i className="fas fa-phone mr-2 text-gray-500"></i>
                   <span>{contactInfo.offices[0].phone}</span>
