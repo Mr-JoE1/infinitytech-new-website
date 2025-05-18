@@ -39,20 +39,18 @@ const Header: React.FC = () => {
 
   return (
     <header className={cn(
-      "fixed w-full z-50 transition-all duration-300",
+      "fixed left-0 right-0 z-50 transition-all duration-300 overflow-hidden",
       isScrolled 
         ? "bg-white/90 backdrop-blur-sm shadow-md" 
         : "bg-transparent"
     )}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/">
-          <a className="flex items-center space-x-2">
-            <Logo 
-              showText={true} 
-              textColor={isScrolled ? 'text-gray-900' : 'text-white'} 
-              secondaryTextColor={isScrolled ? 'text-secondary' : 'text-gray-200'}
-            />
-          </a>
+        <Link href="/" className="flex items-center space-x-2">
+          <Logo 
+            showText={true} 
+            textColor={isScrolled ? 'text-gray-900' : 'text-white'} 
+            secondaryTextColor={isScrolled ? 'text-secondary' : 'text-gray-200'}
+          />
         </Link>
         
         <button 
@@ -67,7 +65,7 @@ const Header: React.FC = () => {
           )}
         </button>
         
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8 overflow-hidden">
           <a 
             href="#services" 
             className={cn(
