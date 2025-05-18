@@ -12,8 +12,8 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({
   showText = true,
-  textColor = 'text-gray-900',
-  secondaryTextColor = 'text-secondary',
+  textColor = 'text-white',
+  secondaryTextColor = 'text-gray-200',
   size = 'md',
   animated = true,
   className = '',
@@ -25,9 +25,9 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   const textSizes = {
-    sm: 'text-lg',
-    md: 'text-xl',
-    lg: 'text-2xl',
+    sm: 'text-xl',
+    md: 'text-2xl',
+    lg: 'text-3xl',
   };
 
   const secondaryTextSizes = {
@@ -43,14 +43,9 @@ const Logo: React.FC<LogoProps> = ({
       </div>
       
       {showText && (
-        <div>
-          <h1 className={`${textSizes[size]} font-bold tracking-tight ${textColor}`}>
-            Infinity Technologies
-          </h1>
-          <p className={`${secondaryTextSizes[size]} ${secondaryTextColor}`}>
-            Develop, Supply & Integrate
-          </p>
-        </div>
+        <span className={`${textSizes[size]} font-bold tracking-tight ${textColor}`}>
+          Infinity <span className={secondaryTextColor}>Technologies</span>
+        </span>
       )}
     </div>
   );

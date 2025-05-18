@@ -330,7 +330,7 @@ const ContactForm: React.FC = () => {
               {...register('privacy')}
             />
             <span className="text-gray-700 text-sm">
-              I agree to the <a href="#" className="text-primary hover:underline">privacy policy</a> and consent to Infinity Technologies processing my data for the purpose of contacting me. <span className="text-red-500">*</span>
+              I agree to the <a href="https://www.termsfeed.com/live/0c8c7f6d-9437-43f2-856f-9744c160b0d6" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a> and consent to Infinity Technologies processing my data for the purpose of contacting me. <span className="text-red-500">*</span>
             </span>
           </label>
           {errors.privacy && (

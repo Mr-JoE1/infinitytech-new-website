@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Infinity Technologies Ltd | Edge‑to‑Cloud Innovators | GCC & UAE Embedded Systems</title>
+        <title>Infinity Technologies Ltd | Edge-to-Cloud Innovators</title>
         <meta name="description" content="Leading embedded systems & IoT experts in UAE, KSA & Egypt. From IoT hardware to cloud solutions, we deliver end-to-end embedded engineering with offices in Abu Dhabi & Egypt." />
         <meta name="keywords" content="embedded systems UAE, IoT solutions GCC, edge-to-cloud, hardware engineering Dubai, embedded firmware developers, PCB design Abu Dhabi, industrial IoT KSA" />
         
